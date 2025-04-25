@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 214 100% 60%; /* Cambiado a azul */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 214 100% 60%; /* Cambiado a azul */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 214 100% 60%; /* Cambiado a azul */
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .dot-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0;
+  }
+}
+
+/* Estilos de Notion */
+.notion-content {
+  font-family: var(--notion-font);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.notion-h1,
+.notion-h2,
+.notion-h3,
+.notion-h4,
+.notion-h5,
+.notion-h6 {
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.notion-h1 {
+  font-size: 2rem;
+  margin-top: 2em;
+}
+
+.notion-h2 {
+  font-size: 1.5rem;
+}
+
+.notion-h3 {
+  font-size: 1.25rem;
+}
+
+.notion-paragraph {
+  margin-bottom: 1em;
+  line-height: 1.65;
+}
+
+.notion-bold {
+  font-weight: 600;
+}
+
+.notion-italic {
+  font-style: italic;
+}
+
+.notion-strikethrough {
+  text-decoration: line-through;
+}
+
+.notion-highlight {
+  background-color: rgba(59, 130, 246, 0.2);
+  padding: 0.05em 0.2em;
+  border-radius: 3px;
+}
+
+.notion-link {
+  color: #3b82f6; /* Blue-500 */
+  text-decoration: none;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.notion-link:hover {
+  border-bottom: 1px solid #3b82f6;
+  color: #60a5fa; /* Blue-400 */
+}
+
+.notion-inline-code {
+  font-family: SFMono-Regular, Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+  line-height: normal;
+  background: rgba(135, 131, 120, 0.15);
+  color: #EB5757;
+  border-radius: 3px;
+  font-size: 85%;
+  padding: 0.2em 0.4em;
+}
+
+.notion-code {
+  font-family: SFMono-Regular, Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+  font-size: 0.85em;
+  background: rgb(13, 17, 23);
+  padding: 1.5em 1.25em;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.notion-list {
+  margin: 0.5em 0 1em;
+  padding-left: 1.5em;
+}
+
+.notion-list-disc {
+  list-style-type: disc;
+}
+
+.notion-list-numbered {
+  list-style-type: decimal;
+}
+
+.notion-list-item {
+  margin: 0.2em 0;
+}
+
+.notion-quote {
+  padding-left: 0.9em;
+  margin: 1.5em 0;
+  font-style: italic;
+  border-left: 3px solid rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.notion-callout {
+  padding: 16px 16px 16px 12px;
+  display: flex;
+  border-radius: 3px;
+  margin: 1.5em 0;
+}
+
+.notion-callout-note {
+  background: rgba(59, 130, 246, 0.1);
+  border-left: 3px solid #3b82f6; /* Blue-500 */
+}
+
+.notion-callout-warning {
+  background: rgba(255, 212, 0, 0.1);
+  border-left: 3px solid rgb(255, 212, 0);
+}
+
+.notion-image {
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+.notion-image-inner {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.notion-image-caption {
+  font-size: 0.875em;
+  margin-top: 0.5em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Añade estos estilos para tablas y divisores */
+
+/* Estilos para tablas */
+.notion-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  border: 1px solid rgba(55, 65, 81, 1);
+  overflow-x: auto;
+  display: block;
+}
+
+.notion-table tbody {
+  display: table;
+  width: 100%;
+}
+
+.notion-th, 
+.notion-td {
+  padding: 0.6em 0.8em;
+  border: 1px solid rgba(55, 65, 81, 1);
+  text-align: left;
+}
+
+.notion-th {
+  background-color: rgba(15, 23, 42, 0.6);
+  font-weight: 600;
+}
+
+.notion-td {
+  background-color: rgba(15, 23, 42, 0.3);
+}
+
+/* Estilo para divisores horizontales */
+.notion-hr {
+  border: none;
+  border-top: 1px solid rgba(55, 65, 81, 1);
+  margin: 2em 0;
+  height: 1px;
+}
