@@ -5,6 +5,9 @@ import { ArrowLeft, Download, Mail } from "lucide-react"
 import { getCertifications, getEducation, getWorkExperience } from "@/lib/notion"
 import { Badge } from "@/components/ui/badge"
 
+// Añadir exportación para la revalidación
+export const revalidate = 60; // Revalidar cada 60 segundos
+
 export default async function AboutPage() {
   const certifications = await getCertifications()
   const education = await getEducation()

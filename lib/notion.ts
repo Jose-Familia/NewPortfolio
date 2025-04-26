@@ -122,6 +122,13 @@ export async function getProjectBySlug(slug: string) {
     // Encuentra el proyecto por slug generado
     const project = response.results.find((page: any) => {
       const props = getPageProperties(page)
+      
+      // Primero verificamos si hay un campo específico Slug y coincide
+      if (props.Slug && props.Slug.toLowerCase() === slug.toLowerCase()) {
+        return true
+      }
+      
+      // Si no, comprobamos si el título slugificado coincide
       const pageSlug = slugify(props.Title || "untitled", { lower: true, strict: true })
       return pageSlug === slug
     })
@@ -136,7 +143,7 @@ export async function getProjectBySlug(slug: string) {
     return {
       id: project.id,
       title: props.Title || "Untitled Project",
-      slug: slugify(props.Title || "untitled", { lower: true, strict: true }),
+      slug: props.Slug || slugify(props.Title || "untitled", { lower: true, strict: true }),
       description: props.Description || "",
       image: props.Image || "/placeholder.svg",
       tags: props.Tags || [],
@@ -505,15 +512,14 @@ export async function getProjectById(id: string) {
 
     return {
       id: page.id,
-      title: props.title || "Untitled Project",
-      slug: props.slug || slugify(props.title || "Untitled Project"),
-      description: props.description || "",
-      image: props.image || "",
-      tags: props.tags || [],
-      category: props.category || "Frontend",
-      // Intercambio de las propiedades
-      url: props.github || "",
-      github: props.url || "",
+      title: props.Title || props.title || "Untitled Project",
+      slug: props.Slug || props.slug || slugify(props.Title || props.title || "Untitled Project", { lower: true, strict: true }),
+      description: props.Description || props.description || "",
+      image: props.Image || props.image || "/placeholder.svg",
+      tags: props.Tags || props.tags || [],
+      category: props.Category || props.category || "Frontend",
+      liveUrl: props["Live URL"] || props["Live Url"] || props["LiveUrl"] || props.liveUrl || "",
+      githubUrl: props["GitHub URL"] || props["GitHub Url"] || props["GitHubUrl"] || props.githubUrl || props.github || "",
       content: mdString.parent,
     }
   } catch (error) {

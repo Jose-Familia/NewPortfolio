@@ -4,6 +4,9 @@ import Skills from "@/components/skills"
 import LatestArticles from "@/components/latest-articles"
 import { getProjects, getSkills, getArticles } from "@/lib/notion"
 
+// Añadir exportación para la revalidación
+export const revalidate = 60; // Revalidar cada 60 segundos
+
 export default async function Home() {
   const projects = await getProjects(3)
   const skills = await getSkills()

@@ -1,6 +1,9 @@
 import { getProjects } from "@/lib/notion"
 import FeaturedProjects from "@/components/featured-projects"
 
+// Añadir exportación para la revalidación
+export const revalidate = 60; // Revalidar cada 60 segundos
+
 export default async function ProjectPage() {
   const projects = await getProjects()
 
