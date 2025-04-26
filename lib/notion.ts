@@ -219,7 +219,8 @@ export async function getArticleBySlug(slug: string) {
   try {
     if (!ARTICLES_DB_ID) return null
 
-    const response = await notion.databases.query({
+    // Primero intentamos buscar por el campo Slug exacto
+    let response = await notion.databases.query({
       database_id: ARTICLES_DB_ID,
       filter: {
         property: "Slug",
@@ -229,6 +230,24 @@ export async function getArticleBySlug(slug: string) {
       },
       page_size: 1,
     })
+
+    // Si no encontramos el artículo por Slug, obtenemos todos y comparamos por título slugificado
+    if (response.results.length === 0) {
+      const allArticles = await notion.databases.query({
+        database_id: ARTICLES_DB_ID,
+      })
+
+      // Buscamos un artículo cuyo título slugificado coincida con el slug solicitado
+      const matchingArticle = allArticles.results.find((page: any) => {
+        const props = getPageProperties(page)
+        const titleSlug = slugify(props.Title || "untitled", { lower: true, strict: true })
+        return titleSlug === slug
+      })
+
+      if (matchingArticle) {
+        response = { results: [matchingArticle] }
+      }
+    }
 
     if (response.results.length === 0) return null
 

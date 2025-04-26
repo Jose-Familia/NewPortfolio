@@ -1,6 +1,9 @@
 import { getArticles } from "@/lib/notion"
 import LatestArticles from "@/components/latest-articles"
 
+// Añadir exportación para la revalidación
+export const revalidate = 60; // Revalidar cada 60 segundos
+
 export default async function BlogPage() {
   const articles = await getArticles()
 

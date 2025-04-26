@@ -6,6 +6,9 @@ import { getArticleBySlug } from "@/lib/notion"
 import { notFound } from "next/navigation"
 import MarkdownRenderer from "@/components/MarkdownRenderer"
 
+// Añadir exportación para la revalidación
+export const revalidate = 60; // Revalidar cada 60 segundos
+
 interface BlogPageProps {
   params: { slug: string }
 }
